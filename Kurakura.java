@@ -100,6 +100,18 @@ public class Kurakura {
     
     public void mundur(double jarak){
         // TODO: lengkapi method ini untuk tugas 1
+        double dx,dy; //Inisiasi variabel dx dan dy
+        dx = jarak * Math.cos(arah); //Menghitung nilai dx dengan rumus tersebut
+        dy = jarak * Math.sin(arah); //Menghitung nilai dy dengan rumus tersebut
+
+        if (jejak){
+            Graphics2D g = imgJejak.createGraphics();
+            g.draw(new java.awt.geom.Line2D.Double(x,y,x-dx,y-dy)); //Menggambar garis pada program
+        }
+
+        x -= dx; //y dikurangi dengan dy
+        y -= dy; //x dikurangi dengan dx
+        matTrans.setToTranslation(x, y);
     }
     
     /** 
