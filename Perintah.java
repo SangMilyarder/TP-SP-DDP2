@@ -64,6 +64,8 @@ public class Perintah {
                 buatSegitiga(Integer.parseInt(in[1]));
         else if (in[0].equalsIgnoreCase("persegi")) 
                 buatPersegi(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
+        else if (in[0].equalsIgnoreCase("segitigasikusiku")) 
+                buatSegitigaSikuSiku(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang alas dan tinggi
         else if (in[0].equalsIgnoreCase("pohon"))
                 buatPohon();        
         else if (in[0].equalsIgnoreCase("jejak"))
@@ -100,6 +102,15 @@ public class Perintah {
             kurakuraku.maju(lebar); //untuk memajukan kura-kura sepanjang lebar
             kurakuraku.rotasi(90); //untuk memutar kura-kura
         }
+    }
+
+    public void buatSegitigaSikuSiku(int panjangAlas, int tinggi){
+        // Membuat method untuk segitiga siku siku
+        kurakuraku.maju(panjangAlas); //untuk menggambar alas segitiga
+        kurakuraku.rotasi(-135); //untuk memutar kura-kura
+        kurakuraku.maju(Math.sqrt(panjangAlas * panjangAlas + tinggi * tinggi)); //untuk menggambar sisi miring
+        kurakuraku.rotasi(-135); //untuk memutar kura-kura
+        kurakuraku.maju(tinggi); //untuk menggambar tinggi segitiga
     }
     
     public void buatPohon(){        
