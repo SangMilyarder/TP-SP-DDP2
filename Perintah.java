@@ -48,7 +48,7 @@ public class Perintah {
     // atau di ubah? 
     public String lakukan(String inputPerintah){
         String[] in = inputPerintah.split(" ");
-        if (in.length < 2 && !in[0].equalsIgnoreCase("selesai")) { //mengecek apakah perintah sesuai
+        if (in.length < 2 && !in[0].equalsIgnoreCase("selesai") && !in[0].equalsIgnoreCase("pohon")) { //mengecek apakah perintah sesuai
             canvas.repaint();
             return "Perintah tidak lengkap. Masukkan kembali perintah."; //mencetak informasi jika perintah salah
         } else {
@@ -134,7 +134,7 @@ public class Perintah {
             kurakuraku.rotasi(90);
         }
     }
-    
+
     public void buatSegitiga(int ukuran){
         // TODO: Lengkapi isi method ini agar kura-kura bisa membuat segitiga sama sisi
         for (int i=0;i<3;i++){ //for loop untuk 3 kali pengulangan
