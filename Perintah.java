@@ -48,7 +48,7 @@ public class Perintah {
     // atau di ubah? 
     public String lakukan(String inputPerintah){
         String[] in = inputPerintah.split(" ");
-        if (in.length < 2 && !in[0].equalsIgnoreCase("selesai") && !in[0].equalsIgnoreCase("pohon")) { //mengecek apakah perintah sesuai
+        if (in.length < 2 && !in[0].equalsIgnoreCase("selesai") && !in[0].equalsIgnoreCase("pohon") && !in[0].equalsIgnoreCase("hadapkanan")  && !in[0].equalsIgnoreCase("hadapkiri")) { //mengecek apakah perintah sesuai
             canvas.repaint();
             return "Perintah tidak lengkap. Masukkan kembali perintah."; //mencetak informasi jika perintah salah
         } else {
@@ -62,6 +62,14 @@ public class Perintah {
                 kurakuraku.mundur(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("rotasi")) {
                 kurakuraku.rotasi(Integer.parseInt(in[1]));
+            } else if (in[0].equalsIgnoreCase("hadapkanan")){
+                kurakuraku.rotasi(90);
+            } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kanan")){
+                kurakuraku.rotasi(90);
+            } else if (in[0].equalsIgnoreCase("hadapkiri")){
+                kurakuraku.rotasi(-90);
+            } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kiri")){
+                kurakuraku.rotasi(-90);
             } else if (in[0].equalsIgnoreCase("kotak")) {
                 buatKotak(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("segitiga")) {
