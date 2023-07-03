@@ -139,7 +139,17 @@ public class Perintah {
                 sudut+=45;
                 kurakuraku.rotasi(sudut);  
             }     
+        } else {
+            kurakuraku.setJejak(true);
+            buatPersegiKecil(); // Menambahkan persegi kecil di ujung ranting pohon
         }
         kurakuraku.reset();
+    }
+
+    private void buatPersegiKecil() {
+        // Menggambar persegi kecil di ujung ranting pohon
+        kurakuraku.maju(10);
+        kurakuraku.rotasi(45);
+        buatPersegi(5,5); // membuat ukuran 5 untuk persegi kecil
     }
 }
