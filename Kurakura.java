@@ -65,6 +65,11 @@ public class Kurakura {
         reset();
     }
     
+    /**
+     * Mengatur ukuran gambar dan membuat objek BufferedImage baru untuk jejak
+     * @param w merupakan lebar gambar yang akan diatur.
+     * @param h merupakan tinggi gambar yang akan diatur.
+     */
     public void setSize(int w, int h){        
         width = w;
         height = h;        
@@ -78,11 +83,19 @@ public class Kurakura {
         matTrans.setToTranslation(x, y);
     }
     
+    /**
+     * Untuk mengatur geraknya turtle agar dapat melakukan rotasi
+     * Rotasi yang dilakukan sebesar @param d yang dimasukkan user
+     */
     public void rotasi(double d){        
         arah += Math.toRadians(d);
         matRotasi.setToRotation(arah,img.getWidth(null)/2,img.getHeight(null)/2); // rotasi dihitung dari pusat image.              
     }
     
+    /**
+     * Untuk mengatur geraknya turtle agar dapat maju ke depan
+     * Jarak maju turtle sesuai dengan @param jarak yang diinput oleh user
+     */
     public void maju(double jarak){
         double dx,dy;
         dx = jarak * Math.cos(arah);
@@ -98,6 +111,10 @@ public class Kurakura {
         matTrans.setToTranslation(x,y);
     }
     
+    /**
+     * Untuk mengatur geraknya turtle agar dapat mundur ke belakang
+     * Jarak mundur turtle sesuai dengan @param jarak yang diinput oleh user
+     */
     public void mundur(double jarak){
         // TODO: lengkapi method ini untuk tugas 1
         double dx,dy; //Inisiasi variabel dx dan dy
@@ -168,10 +185,18 @@ public class Kurakura {
         matTrans.setToTranslation(x, y);
     }
     
+    /**
+     * untuk mengembalikan nilai arah
+     * @return nilai arah turtle dalam bentuk double
+     */
     public double getArah(){
         return arah;
     }
     
+    /**
+    * Mengatur nilai arah dan melakukan rotasi sesuai dengan nilai arah baru.
+    * @param a nilai arah yang akan diatur dalam bentuk double.
+    */
     public void setArah(double a){
         arah =a;
         matRotasi.setToRotation(arah,img.getWidth(null)/2,img.getHeight(null)/2); // rotasi dihitung dari pusat image.              
