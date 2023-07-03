@@ -48,38 +48,43 @@ public class Perintah {
     // atau di ubah? 
     public String lakukan(String inputPerintah){
         String[] in = inputPerintah.split(" ");
-        if (in[0].equalsIgnoreCase("selesai"))
-            System.exit(0);
-        else if (in[0].equalsIgnoreCase("reset"))
-            kurakuraku.reset();
-        else if (in[0].equalsIgnoreCase("maju"))
-            kurakuraku.maju(Integer.parseInt(in[1]));
-        else if (in[0].equalsIgnoreCase("mundur"))
-                kurakuraku.mundur(Integer.parseInt(in[1]));
-        else if (in[0].equalsIgnoreCase("rotasi"))
-                kurakuraku.rotasi(Integer.parseInt(in[1]));
-        else if (in[0].equalsIgnoreCase("kotak"))
-                buatKotak(Integer.parseInt(in[1]));
-        else if (in[0].equalsIgnoreCase("segitiga"))
-                buatSegitiga(Integer.parseInt(in[1]));
-        else if (in[0].equalsIgnoreCase("persegi")) 
-                buatPersegi(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
-        else if (in[0].equalsIgnoreCase("segitigasikusiku")) 
-                buatSegitigaSikuSiku(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang alas dan tinggi
-        else if (in[0].equalsIgnoreCase("pohon"))
-                buatPohon();        
-        else if (in[0].equalsIgnoreCase("jejak"))
-                kurakuraku.setJejak(Boolean.parseBoolean(in[1]));
-        else if (in[0].equalsIgnoreCase("pindah"))
-                kurakuraku.setPosition(new Dimension(Integer.parseInt(in[1]),Integer.parseInt(in[2])));
-        else{
-                canvas.repaint(); 
-                return "Perintah tidak dipahami.";
-            }
+        if (in.length < 2 && !in[0].equalsIgnoreCase("selesai")) { //mengecek apakah perintah sesuai
+            canvas.repaint();
+            return "Perintah tidak lengkap. Masukkan kembali perintah."; //mencetak informasi jika perintah salah
+        } else {
+            if (in[0].equalsIgnoreCase("selesai"))
+                System.exit(0);
+            else if (in[0].equalsIgnoreCase("reset"))
+                kurakuraku.reset();
+            else if (in[0].equalsIgnoreCase("maju"))
+                kurakuraku.maju(Integer.parseInt(in[1]));
+            else if (in[0].equalsIgnoreCase("mundur"))
+                    kurakuraku.mundur(Integer.parseInt(in[1]));
+            else if (in[0].equalsIgnoreCase("rotasi"))
+                    kurakuraku.rotasi(Integer.parseInt(in[1]));
+            else if (in[0].equalsIgnoreCase("kotak"))
+                    buatKotak(Integer.parseInt(in[1]));
+            else if (in[0].equalsIgnoreCase("segitiga"))
+                    buatSegitiga(Integer.parseInt(in[1]));
+            else if (in[0].equalsIgnoreCase("persegi")) 
+                    buatPersegi(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
+            else if (in[0].equalsIgnoreCase("segitigasikusiku")) 
+                    buatSegitigaSikuSiku(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang alas dan tinggi
+            else if (in[0].equalsIgnoreCase("pohon"))
+                    buatPohon();        
+            else if (in[0].equalsIgnoreCase("jejak"))
+                    kurakuraku.setJejak(Boolean.parseBoolean(in[1]));
+            else if (in[0].equalsIgnoreCase("pindah"))
+                    kurakuraku.setPosition(new Dimension(Integer.parseInt(in[1]),Integer.parseInt(in[2])));
+            else{
+                    canvas.repaint(); 
+                    return "Perintah tidak dipahami.";
+                }
         canvas.repaint();    
         return "Perintah sudah dilaksanakan.";
+        }
     }
-    
+
     public void buatKotak(int ukuran ){        
         for (int i=0;i<4;i++){
             kurakuraku.maju(ukuran);
