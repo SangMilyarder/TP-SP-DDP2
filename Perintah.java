@@ -71,13 +71,13 @@ public class Perintah {
             } else if (in[0].equalsIgnoreCase("rotasi")) {
                 kurakuraku.rotasi(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("hadapkanan")){
-                kurakuraku.rotasi(90);
+                hadapkanan();;
             } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kanan")){
-                kurakuraku.rotasi(90);
+                hadapkanan();;
             } else if (in[0].equalsIgnoreCase("hadapkiri")){
-                kurakuraku.rotasi(-90);
+                hadapkiri();;
             } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kiri")){
-                kurakuraku.rotasi(-90);
+                hadapkiri();;
             } else if (in[0].equalsIgnoreCase("kotak")) {
                 buatKotak(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("segitiga")) {
@@ -142,6 +142,14 @@ public class Perintah {
         }       
         canvas.repaint();    
         return "Perintah sudah dilaksanakan.";
+    }
+
+    public void hadapkanan(){
+        kurakuraku.rotasi(90);
+    }
+
+    public void hadapkiri(){
+        kurakuraku.rotasi(-90);
     }
 
     public void buatKotak(int ukuran ){        
