@@ -51,7 +51,15 @@ public class Perintah {
         if (in.length < 2 && !in[0].equalsIgnoreCase("selesai") && !in[0].equalsIgnoreCase("pohon") && !in[0].equalsIgnoreCase("hadapkanan")  && !in[0].equalsIgnoreCase("hadapkiri")) { //mengecek apakah perintah sesuai
             canvas.repaint();
             return "Perintah tidak lengkap. Masukkan kembali perintah."; //mencetak informasi jika perintah salah
-        } else {
+        } else if (in[0].equalsIgnoreCase("segitigasikusiku") || in[0].equalsIgnoreCase("persegi")) {
+            if (in.length < 3) {
+                canvas.repaint();
+                return "Perintah tidak lengkap. Masukkan kembali perintah.";
+            } else if (in[0].equalsIgnoreCase("persegi")) {
+                buatPersegi(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
+            } else if (in[0].equalsIgnoreCase("segitigasikusiku")) {
+                buatSegitigaSikuSiku(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
+        }} else {
             if (in[0].equalsIgnoreCase("selesai")) {
                 System.exit(0);
             } else if (in[0].equalsIgnoreCase("reset")) {
@@ -130,10 +138,10 @@ public class Perintah {
         } else {
             canvas.repaint();
             return "Perintah tidak dipahami.";
-        }     
+            } 
+        }       
         canvas.repaint();    
         return "Perintah sudah dilaksanakan.";
-        }
     }
 
     public void buatKotak(int ukuran ){        
