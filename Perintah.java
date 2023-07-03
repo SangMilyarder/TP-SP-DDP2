@@ -1,4 +1,3 @@
-
 import java.awt.Dimension;
 
 /**
@@ -71,13 +70,13 @@ public class Perintah {
             } else if (in[0].equalsIgnoreCase("rotasi")) {
                 kurakuraku.rotasi(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("hadapkanan")){
-                hadapkanan();;
+                hadapkanan();
             } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kanan")){
-                hadapkanan();;
+                hadapkanan();
             } else if (in[0].equalsIgnoreCase("hadapkiri")){
-                hadapkiri();;
+                hadapkiri();
             } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kiri")){
-                hadapkiri();;
+                hadapkiri();
             } else if (in[0].equalsIgnoreCase("kotak")) {
                 buatKotak(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("segitiga")) {
@@ -144,14 +143,24 @@ public class Perintah {
         return "Perintah sudah dilaksanakan.";
     }
 
+    /**
+     * Untuk melakukan perintah hadap kanan yaitu melakukan rotasi ke kanan sebanyak 90 derajat
+     */
     public void hadapkanan(){
         kurakuraku.rotasi(90);
     }
 
+    /**
+     * Untuk melakukan perintah hadap kiri yaitu melakukan rotasi ke kiri sebanyak -90 derajat
+     */
     public void hadapkiri(){
         kurakuraku.rotasi(-90);
     }
 
+    /**
+     * Untuk membuat persegi sama sisi pada turtle
+     * @param ukuran sebagai ukuran keempat sisi yang akan dipakai untuk menggambar kotak
+     */
     public void buatKotak(int ukuran ){        
         for (int i=0;i<4;i++){
             kurakuraku.maju(ukuran);
@@ -159,6 +168,10 @@ public class Perintah {
         }
     }
 
+    /**
+     * Untuk membuat bentuk segitiga sama sisi pada turtle
+     * @param ukuran sebagai ukuran sisi yang akan dipakai untuk menggambar segitiga
+     */
     public void buatSegitiga(int ukuran){
         // TODO: Lengkapi isi method ini agar kura-kura bisa membuat segitiga sama sisi
         for (int i=0;i<3;i++){ //for loop untuk 3 kali pengulangan
@@ -167,6 +180,11 @@ public class Perintah {
         }
     }       
     
+    /**
+     * Untuk membuat bentuk persegi panjang pada turtle
+     * @param panjang sebagai ukuran panjang yang akan dipakai untuk menggambar persegi
+     * @param lebar sebagai ukuran lebar yang akan dipakai untuk menggambar persegi
+     */
     public void buatPersegi(int panjang, int lebar){
         // Membuat method untuk persegi
         for (int i=0;i<2;i++){ //for loop untuk 2 kali pengulangan
@@ -177,6 +195,11 @@ public class Perintah {
         }
     }
 
+    /**
+     * Untuk membuat bentuk segitiga siku-siku pada turtle
+     * @param panjangAlas Sebagai alas untuk segitiga yang akan dibuat
+     * @param tinggi Sebagai tinggi untuk segitiga yang akan dibuat
+     */
     public void buatSegitigaSikuSiku(int panjangAlas, int tinggi){
         // Membuat method untuk segitiga siku siku
         kurakuraku.maju(panjangAlas); //untuk menggambar alas segitiga
@@ -186,6 +209,10 @@ public class Perintah {
         kurakuraku.maju(tinggi); //untuk menggambar tinggi segitiga
     }
     
+    /**
+     * Untuk menggambar bentuk pohon sesuai dengan perintah yang sudah diberikan
+     * Setelah membuat pohon, posisi dan rotasi kurakura akan direset
+     */
     public void buatPohon(){        
         kurakuraku.setJejak(false);
         kurakuraku.reset();
@@ -196,6 +223,11 @@ public class Perintah {
         kurakuraku.reset();
     }
     
+    /**
+     * Untuk menggambar pohon secara rekursif dengan ukuran dan tinggi yang sudah diberikan
+     * @param ukuran Jumlah level rekursi untuk membuat pohon.
+     * @param tinggi Tinggi pohon untuk setiap level rekursi
+     */
     private void buatPohon(int ukuran, int tinggi){
         if (ukuran>0){
             kurakuraku.setJejak(true);
@@ -219,6 +251,11 @@ public class Perintah {
         kurakuraku.reset();
     }
 
+    /**
+     * Untuk membuat persegi kecil pada ujung ranting pohon
+     * Fungsi ini melakukan gerakan maju dan rotasi turtle untuk menempatkan persegi kecil
+     * Persegi kecil berukuran 5
+     */
     private void buatPersegiKecil() {
         // Menggambar persegi kecil di ujung ranting pohon
         kurakuraku.maju(10);
