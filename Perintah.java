@@ -52,34 +52,77 @@ public class Perintah {
             canvas.repaint();
             return "Perintah tidak lengkap. Masukkan kembali perintah."; //mencetak informasi jika perintah salah
         } else {
-            if (in[0].equalsIgnoreCase("selesai"))
+            if (in[0].equalsIgnoreCase("selesai")) {
                 System.exit(0);
-            else if (in[0].equalsIgnoreCase("reset"))
+            } else if (in[0].equalsIgnoreCase("reset")) {
                 kurakuraku.reset();
-            else if (in[0].equalsIgnoreCase("maju"))
+            } else if (in[0].equalsIgnoreCase("maju")) {
                 kurakuraku.maju(Integer.parseInt(in[1]));
-            else if (in[0].equalsIgnoreCase("mundur"))
-                    kurakuraku.mundur(Integer.parseInt(in[1]));
-            else if (in[0].equalsIgnoreCase("rotasi"))
-                    kurakuraku.rotasi(Integer.parseInt(in[1]));
-            else if (in[0].equalsIgnoreCase("kotak"))
-                    buatKotak(Integer.parseInt(in[1]));
-            else if (in[0].equalsIgnoreCase("segitiga"))
-                    buatSegitiga(Integer.parseInt(in[1]));
-            else if (in[0].equalsIgnoreCase("persegi")) 
-                    buatPersegi(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
-            else if (in[0].equalsIgnoreCase("segitigasikusiku")) 
-                    buatSegitigaSikuSiku(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang alas dan tinggi
-            else if (in[0].equalsIgnoreCase("pohon"))
-                    buatPohon();        
-            else if (in[0].equalsIgnoreCase("jejak"))
-                    kurakuraku.setJejak(Boolean.parseBoolean(in[1]));
-            else if (in[0].equalsIgnoreCase("pindah"))
-                    kurakuraku.setPosition(new Dimension(Integer.parseInt(in[1]),Integer.parseInt(in[2])));
-            else{
-                    canvas.repaint(); 
-                    return "Perintah tidak dipahami.";
+            } else if (in[0].equalsIgnoreCase("mundur")) {
+                kurakuraku.mundur(Integer.parseInt(in[1]));
+            } else if (in[0].equalsIgnoreCase("rotasi")) {
+                kurakuraku.rotasi(Integer.parseInt(in[1]));
+            } else if (in[0].equalsIgnoreCase("kotak")) {
+                buatKotak(Integer.parseInt(in[1]));
+            } else if (in[0].equalsIgnoreCase("segitiga")) {
+                buatSegitiga(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
+            } else if (in[0].equalsIgnoreCase("persegi")) {
+                buatPersegi(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
+            } else if (in[0].equalsIgnoreCase("segitigasikusiku")) {
+                buatSegitigaSikuSiku(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
+            } else if (in[0].equalsIgnoreCase("pohon")) {
+                buatPohon();
+            } else if (in[0].equalsIgnoreCase("jejak")) {
+                kurakuraku.setJejak(Boolean.parseBoolean(in[1]));
+            } else if (in[0].equalsIgnoreCase("pindah")) {
+                kurakuraku.setPosition(new Dimension(Integer.parseInt(in[1]), Integer.parseInt(in[2])));
+            } else if (in[0].equalsIgnoreCase("loop")) { //untuk mengenali apakah ada perintah loop
+                int jumlah = Integer.parseInt(in[1]); //untuk mengambil jumlah loop yang diminta user
+                for (int i = 0; i < jumlah; i++) { //inisiasi loop
+                    for (int j = 2; j < in.length; j += 2) { //dimulai dari indeks ke-2, karena indeks ke-0 dan ke-1 telah digunakan untuk kata "loop" dan jumlah iterasi.
+                        String perintah = in[j];
+                        int nilai = Integer.parseInt(in[j + 1]); //untuk mengambil nilai yang akan digunakan dalam eksekusi perintah
+                        if (perintah.equalsIgnoreCase("maju")) {
+                            kurakuraku.maju(nilai);
+                        } else if (perintah.equalsIgnoreCase("mundur")) {
+                            kurakuraku.mundur(nilai);
+                        } else if (perintah.equalsIgnoreCase("rotasi")) {
+                            kurakuraku.rotasi(nilai);
+                        } else if (perintah.equalsIgnoreCase("kotak")) {
+                            buatKotak(nilai);
+                        } else if (perintah.equalsIgnoreCase("segitiga")) {
+                            buatSegitiga(nilai);
+                        } else if (perintah.equalsIgnoreCase("persegi")) {
+                            int panjang = Integer.parseInt(in[j + 1]);
+                            int lebar = Integer.parseInt(in[j + 2]);
+                            buatPersegi(panjang, lebar);
+                            j += 2;
+                        } else if (perintah.equalsIgnoreCase("segitigasikusiku")) {
+                            int panjang = Integer.parseInt(in[j + 1]);
+                            int lebar = Integer.parseInt(in[j + 2]);
+                            buatSegitigaSikuSiku(panjang, lebar);
+                            j += 2;
+                        } else if (perintah.equalsIgnoreCase("pohon")) {
+                            buatPohon();
+                        } else if (perintah.equalsIgnoreCase("jejak")) {
+                            boolean jejak = Boolean.parseBoolean(in[j + 1]);
+                            kurakuraku.setJejak(jejak);
+                            j++;
+                        } else if (perintah.equalsIgnoreCase("pindah")) {
+                            int x = Integer.parseInt(in[j + 1]);
+                            int y = Integer.parseInt(in[j + 2]);
+                            kurakuraku.setPosition(new Dimension(x, y));
+                            j += 2;
+                        } else {
+                            canvas.repaint();
+                            return "Perintah tidak dipahami.";
+                    }              
                 }
+            }
+        } else {
+            canvas.repaint();
+            return "Perintah tidak dipahami.";
+        }     
         canvas.repaint();    
         return "Perintah sudah dilaksanakan.";
         }
@@ -91,6 +134,7 @@ public class Perintah {
             kurakuraku.rotasi(90);
         }
     }
+    
     public void buatSegitiga(int ukuran){
         // TODO: Lengkapi isi method ini agar kura-kura bisa membuat segitiga sama sisi
         for (int i=0;i<3;i++){ //for loop untuk 3 kali pengulangan
