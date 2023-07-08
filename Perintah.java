@@ -157,6 +157,27 @@ public class Perintah {
         kurakuraku.rotasi(-90);
     }
 
+    public void buatBoxes(int level, double panjang, double lebar, double jarak) {
+    if (level <= 0) {
+        return;
+    } else {
+        kurakuraku.setJejak(true);
+        for (int i=0;i<2;i++){ //for loop untuk 2 kali pengulangan
+            kurakuraku.maju(panjang); //untuk memajukan kura-kura sepanjang panjang
+            kurakuraku.rotasi(90); //untuk memutar kura-kura
+            kurakuraku.maju(lebar); //untuk memajukan kura-kura sepanjang lebar
+            kurakuraku.rotasi(90); //untuk memutar kura-kura
+        }
+        kurakuraku.rotasi(45);
+        kurakuraku.setJejak(false);
+        kurakuraku.maju(Math.sqrt(jarak * jarak));
+        kurakuraku.rotasi(-45);
+        double newPanjang = panjang - (2 * jarak);
+        double newLebar = lebar - (2 * jarak);
+        buatBoxes(level - 1, newPanjang, newLebar, jarak);
+    }
+}
+
     /**
      * Untuk membuat persegi sama sisi pada turtle
      * @param ukuran sebagai ukuran keempat sisi yang akan dipakai untuk menggambar kotak
