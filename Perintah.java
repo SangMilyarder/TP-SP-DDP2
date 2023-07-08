@@ -77,6 +77,8 @@ public class Perintah {
                 hadapkiri();
             } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kiri")){
                 hadapkiri();
+            }else if (in[0].equalsIgnoreCase("boxes")){
+                buatBoxes(Integer.parseInt(in[1]), Integer.parseInt(in[2]), Integer.parseInt(in[3]), Integer.parseInt(in[4]));
             } else if (in[0].equalsIgnoreCase("kotak")) {
                 buatKotak(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("segitiga")) {
