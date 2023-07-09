@@ -78,7 +78,7 @@ public class Perintah {
             } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kiri")){
                 hadapkiri();
             }else if (in[0].equalsIgnoreCase("boxes")){
-                buatBoxes(Integer.parseInt(in[1]), Integer.parseInt(in[2]), Integer.parseInt(in[3]), Integer.parseInt(in[4]));
+                buatBoxes(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("kotak")) {
                 buatKotak(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("segitiga")) {
@@ -159,26 +159,26 @@ public class Perintah {
         kurakuraku.rotasi(-90);
     }
 
-    public void buatBoxes(int level, double panjang, double lebar, double jarak) {
-    if (level <= 0) {
-        return;
-    } else {
-        kurakuraku.setJejak(true);
-        for (int i=0;i<2;i++){ //for loop untuk 2 kali pengulangan
-            kurakuraku.maju(panjang); //untuk memajukan kura-kura sepanjang panjang
-            kurakuraku.rotasi(90); //untuk memutar kura-kura
-            kurakuraku.maju(lebar); //untuk memajukan kura-kura sepanjang lebar
-            kurakuraku.rotasi(90); //untuk memutar kura-kura
+    /**
+     * Untuk membuat bentuk kotak secara rekursif
+     * Setiap level rekursi akan membuat kotak lebih kecil dan digambar di tengah kotak sebelumnya
+     * @param ukuran Ukuran kotak pada level sekarang
+     * Jika ukuran <= 0 kotak tidak akan digambar
+     */
+    public void buatBoxes(int ukuran) {
+        if (ukuran <= 0){
+            return;
+        } else {
+            buatKotak(ukuran);
+            kurakuraku.setJejak(false);
+            kurakuraku.maju(10);
+            kurakuraku.rotasi(90);
+            kurakuraku.maju(10);
+            kurakuraku.rotasi(-90);
+            kurakuraku.setJejak(true);
+            buatBoxes(ukuran - 20);
         }
-        kurakuraku.rotasi(45);
-        kurakuraku.setJejak(false);
-        kurakuraku.maju(Math.sqrt(jarak * jarak));
-        kurakuraku.rotasi(-45);
-        double newPanjang = panjang - (2 * jarak);
-        double newLebar = lebar - (2 * jarak);
-        buatBoxes(level - 1, newPanjang, newLebar, jarak);
     }
-}
 
     /**
      * Untuk membuat persegi sama sisi pada turtle
