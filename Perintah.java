@@ -79,6 +79,8 @@ public class Perintah {
                 hadapkiri();
             }else if (in[0].equalsIgnoreCase("boxes")){
                 buatBoxes(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
+            }else if (in[0].equalsIgnoreCase("sierpinski")){
+                Sierpinski(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
             }else if (in[0].equalsIgnoreCase("custom")){
                 buatTriangles(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
             }else if (in[0].equalsIgnoreCase("bercak")){
@@ -201,6 +203,41 @@ public class Perintah {
             kurakuraku.rotasi(30);
             kurakuraku.setJejak(true);
             buatTriangles(ukuran - 20);
+        }
+    }
+
+     /**
+     * Method utama untuk membuat sierpinski
+     * @param ukuran Ukuran untuk sierpinski
+     */
+    public void Sierpinski(int ukuran){
+        SierpinskiRekursif(ukuran/2);
+    }
+    
+    /**
+     * Method rekursif untuk penggambaran sierpinski
+     * @param ukuran Untuk ukuran sierpinski
+     */
+    public void SierpinskiRekursif(int ukuran){
+        if (ukuran <= 2){
+            return;
+        } else {
+            Dimension posisi_awal = kurakuraku.getPosition(); //Menyimpan posisi awal
+            //Untuk menggambar segitiga sebelah kanan
+            kurakuraku.maju(ukuran/2);
+            SierpinskiRekursif(ukuran/2);
+            //Untuk menggambar segitiga sebelah kiri
+            kurakuraku.setPosition(posisi_awal);
+            kurakuraku.mundur(ukuran/2);
+            SierpinskiRekursif(ukuran/2);
+            //Untuk menggambar segitiga atas
+            kurakuraku.setPosition(posisi_awal);
+            kurakuraku.rotasi(-60);
+            kurakuraku.maju(ukuran);
+            kurakuraku.rotasi(-120);
+            kurakuraku.maju(ukuran/2);
+            kurakuraku.rotasi(180);
+            SierpinskiRekursif(ukuran/2);
         }
     }
 
