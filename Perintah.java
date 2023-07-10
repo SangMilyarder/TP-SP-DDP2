@@ -50,7 +50,7 @@ public class Perintah {
         if (in.length < 2 && !in[0].equalsIgnoreCase("selesai") && !in[0].equalsIgnoreCase("pohon") && !in[0].equalsIgnoreCase("hadapkanan")  && !in[0].equalsIgnoreCase("hadapkiri")) { //mengecek apakah perintah sesuai
             canvas.repaint();
             return "Perintah tidak lengkap. Masukkan kembali perintah."; //mencetak informasi jika perintah salah
-        } else if (in[0].equalsIgnoreCase("segitigasikusiku") || in[0].equalsIgnoreCase("persegi")) {
+        } else if (in[0].equalsIgnoreCase("segitigasikusiku") || in[0].equalsIgnoreCase("persegi") || in[0].equalsIgnoreCase("bingkai")) {
             if (in.length < 3) {
                 canvas.repaint();
                 return "Perintah tidak lengkap. Masukkan kembali perintah.";
@@ -58,6 +58,8 @@ public class Perintah {
                 buatPersegi(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
             } else if (in[0].equalsIgnoreCase("segitigasikusiku")) {
                 buatSegitigaSikuSiku(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu panjang dan lebar
+            }else if (in[0].equalsIgnoreCase("bingkai")){
+                buatBingkai(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu ukuran dan lebar
         }} else {
             if (in[0].equalsIgnoreCase("selesai")) {
                 System.exit(0);
@@ -79,6 +81,8 @@ public class Perintah {
                 hadapkiri();
             }else if (in[0].equalsIgnoreCase("boxes")){
                 buatBoxes(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
+            }else if (in[0].equalsIgnoreCase("bingkai")){
+                buatBingkai(Integer.parseInt(in[1]), Integer.parseInt(in[2])); //terdiri dari 2 variabel yaitu ukuran dan lebar
             }else if (in[0].equalsIgnoreCase("sierpinski")){
                 Sierpinski(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
             }else if (in[0].equalsIgnoreCase("custom")){
@@ -183,6 +187,28 @@ public class Perintah {
             kurakuraku.rotasi(-90);
             kurakuraku.setJejak(true);
             buatBoxes(ukuran - 20);
+        }
+    }
+
+    /**
+     * Untuk membuat bentuk bingkai secara rekursif
+     * Setiap level rekursi akan membuat bingkai lebih kecil dan digambar di tengah bingkai sebelumnya
+     * @param ukuran Ukuran panjang bingkai pada level sekarang
+     * @param lebar Ukuran lebar bingkai pada level sekarang
+     * Jika ukuran <= 0 atau lebar <= 0 kotak tidak akan digambar
+     */
+    public void buatBingkai(int ukuran, int lebar) {
+        if (ukuran <= 0 || lebar <= 0) {
+            return;
+        } else {
+            buatPersegi(ukuran, lebar);
+            kurakuraku.setJejak(false);
+            kurakuraku.maju(10);
+            kurakuraku.rotasi(90);
+            kurakuraku.maju(10);
+            kurakuraku.rotasi(-90);
+            kurakuraku.setJejak(true);
+            buatBingkai(ukuran - 20, lebar - 20);
         }
     }
 
