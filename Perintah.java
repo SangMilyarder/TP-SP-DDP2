@@ -79,6 +79,8 @@ public class Perintah {
                 hadapkiri();
             }else if (in[0].equalsIgnoreCase("boxes")){
                 buatBoxes(Integer.parseInt(in[1]));
+            }else if (in[0].equalsIgnoreCase("custom")){
+                buatTriangles(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("kotak")) {
                 buatKotak(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("segitiga")) {
@@ -177,6 +179,26 @@ public class Perintah {
             kurakuraku.rotasi(-90);
             kurakuraku.setJejak(true);
             buatBoxes(ukuran - 20);
+        }
+    }
+
+    /**
+     * Untuk membuat bentuk segitiga secara rekursif
+     * Setiap level rekursi akan membuat segitiga lebih kecil dan digambar di tengah segitiga sebelumnya
+     * @param ukuran Ukuran segitiga pada level sekarang
+     * jika ukuran <= 0 segitiga tidak akan digambar
+     */
+    public void buatTriangles(int ukuran) {
+        if (ukuran <= 0){
+            return;
+        } else {
+            buatSegitiga(ukuran);
+            kurakuraku.setJejak(false);
+            kurakuraku.rotasi(-30);
+            kurakuraku.maju(10);
+            kurakuraku.rotasi(30);
+            kurakuraku.setJejak(true);
+            buatTriangles(ukuran - 20);
         }
     }
 
