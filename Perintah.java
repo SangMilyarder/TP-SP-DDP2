@@ -78,9 +78,11 @@ public class Perintah {
             } else if (in[0].equalsIgnoreCase("hadap") && in[1].equalsIgnoreCase("kiri")){
                 hadapkiri();
             }else if (in[0].equalsIgnoreCase("boxes")){
-                buatBoxes(Integer.parseInt(in[1]));
+                buatBoxes(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
             }else if (in[0].equalsIgnoreCase("custom")){
-                buatTriangles(Integer.parseInt(in[1]));
+                buatTriangles(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
+            }else if (in[0].equalsIgnoreCase("bercak")){
+                buatBercak(Integer.parseInt(in[1])); //terdiri dari 1 variabel yaitu ukuran
             } else if (in[0].equalsIgnoreCase("kotak")) {
                 buatKotak(Integer.parseInt(in[1]));
             } else if (in[0].equalsIgnoreCase("segitiga")) {
@@ -199,6 +201,44 @@ public class Perintah {
             kurakuraku.rotasi(30);
             kurakuraku.setJejak(true);
             buatTriangles(ukuran - 20);
+        }
+    }
+
+    /**
+    * Untuk menggambar pola bercak secara rekursif
+    *
+    * @param ukuran Ukuran pola
+    */
+    public void buatBercak(int ukuran) {
+        BercakRekursif(ukuran);
+    }
+
+    /**
+     * Method rekursif untuk menggambar pola bercak
+     *
+     * @param ukuran Ukuran pola
+     */
+    public void BercakRekursif(int ukuran) {
+        if (ukuran >= 2) {
+            Dimension posAwal = kurakuraku.getPosition();
+            double arah = kurakuraku.getArah();
+            kurakuraku.maju(ukuran / 2);
+            kurakuraku.rotasi(-60);
+            BercakRekursif(ukuran / 2);
+            kurakuraku.setPosition(posAwal);
+            kurakuraku.setArah(arah);
+
+            kurakuraku.maju(ukuran / 2);
+            kurakuraku.rotasi(60);
+            BercakRekursif(ukuran / 2);
+            kurakuraku.setPosition(posAwal);
+            kurakuraku.setArah(arah);
+
+            kurakuraku.maju(ukuran / 2);
+            kurakuraku.rotasi(180);
+            BercakRekursif(ukuran / 2);
+            kurakuraku.setPosition(posAwal);
+            kurakuraku.setArah(arah);
         }
     }
 
